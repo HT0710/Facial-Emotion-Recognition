@@ -10,7 +10,7 @@ FER or Facial Expression Recognition
     + Mediapipe Deep Learning-based Face Detection
 
 2. Trainning facial emotion with:
-    + 
+    + .
 
 
 ## Practical steps
