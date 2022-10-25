@@ -3,24 +3,28 @@ import numpy as np
 import dlib
 import time
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture("videos/1.mp4")
 pTime = 0
 
 detector = dlib.get_frontal_face_detector()
-predictor = dlib.shape_predictor(r'C:\Users\HT0710\Documents\GitHub\Facial-Emotion-Recognition\shape_predictor_68_face_landmarks.dat')
+predictor = dlib.shape_predictor(
+    r'C:\Users\HT0710\Documents\GitHub\Facial-Emotion-Recognition\shape_predictor_68_face_landmarks.dat')
 
 while True:
     _, frame = cap.read()
-    down_scale = cv2.resize(frame, (0, 0), fx=1, fy=1)
+    frame = cv2.resize(frame, (0, 0))
 
     cTime = time.time()
-    fps = 1/(cTime-pTime)
+    try:
+        fps = 1 / (cTime - pTime)
+    except:
+        pass
     pTime = cTime
     cv2.putText(frame, f'FPS:{int(fps)}', (20, 70), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-    print(fps)
+    print(int(fps))
 
-    gray = cv2.cvtColor(down_scale, cv2.COLOR_BGR2GRAY)
-    faces = detector(gray)
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    faces = detector(gray, 1)
 
     for face in faces:
         x1 = face.left()
@@ -40,4 +44,3 @@ while True:
         break
 
     cv2.imshow("main", frame)
-#%%
