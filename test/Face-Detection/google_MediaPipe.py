@@ -6,7 +6,7 @@ mpDraw = mp.solutions.drawing_utils
 mpFaceMesh = mp.solutions.face_mesh
 faceMesh = mpFaceMesh.FaceMesh(static_image_mode=True, max_num_faces=50)
 
-cap = cv2.VideoCapture("videos/1.mp4")
+cap = cv2.VideoCapture(1)
 ptime = 0
 
 while True:
