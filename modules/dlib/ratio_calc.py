@@ -68,7 +68,7 @@ class RatioCalculator:
         a7 = self.__div(self.__d11, self.__d9)
         a8 = self.__div(self.__d12, self.__d2)
         result = [a1, a2, a3, a4, a5, a6, a7, a8]
-        return [round(num, 4) for num in result]
+        return [round(num, 10) for num in result]
 
 
 def main():
