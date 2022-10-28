@@ -11,7 +11,7 @@ fps = FPS()
 
 face_model = FaceDetector(True, 10)
 emotion_model = SVM('dataset/mediapipe_train_emotions.csv', labels)
-emotion_model.train('emotions', scale=False, samples_limit=300, kernel='poly')
+emotion_model.train('emotions', scale=False, samples_limit=3000, kernel='poly')
 
 while True:
     _, frame = cap.read()
