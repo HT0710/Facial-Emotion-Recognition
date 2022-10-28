@@ -29,6 +29,7 @@ class SVM:
         drop = []
         count = [0 for i in labels]
 
+        limit = float('inf') if limit == 0 else limit
         for i, emotion in enumerate(labels):
             for j, label in enumerate(self.__labels):
                 if emotion == label:
@@ -42,7 +43,7 @@ class SVM:
         y = np.delete(labels, drop, 0)
         return X, y
 
-    def train(self, predict_label: str, scale: bool = False, samples_limit: int = None, kernel: str = 'rbf') -> None:
+    def train(self, predict_label: str, scale: bool = False, samples_limit: int = 0, kernel: str = 'rbf') -> None:
         """Train the SVM model
 
         Parameters

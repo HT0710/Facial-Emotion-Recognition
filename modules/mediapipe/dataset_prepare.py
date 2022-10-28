@@ -1,7 +1,6 @@
 from mediapipe_FaceLandmarks import FaceDetector
 from ratio_calc import RatioCalculator
 import tensorflow as tf
-import numpy as np
 import cv2
 import os
 
@@ -34,7 +33,7 @@ with open(f'../../dataset/mediapipe_{datatype}_emotions.csv', 'a+') as f:
                 for face in faces:
                     ratio = RatioCalculator(face)
                     dataset = ratio.result()
-                    # f.write(f"{''.join(f'{e},' for e in dataset)}{emotion}\n")
+                    f.write(f"{''.join(f'{e},' for e in dataset)}{emotion}\n")
 
 
 print(f"|- Detect: {total-loss}")

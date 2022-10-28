@@ -6,15 +6,27 @@ import cv2
 
 labels = ['angry', 'disgust', 'fear', 'happy', 'neutral', 'sad', 'surprise']
 
-cap = cv2.VideoCapture(0)
+image_mode = False
+
+if image_mode:
+    img = cv2.imread('C:/Users/HT0710/Pictures/3-views-female-face.jpg')
+
+else:
+    cap = cv2.VideoCapture(0)
+
 fps = FPS()
 
 face_model = FaceDetector(True, 10)
 emotion_model = SVM('dataset/mediapipe_train_emotions.csv', labels)
-emotion_model.train('emotions', scale=False, samples_limit=3000, kernel='poly')
+emotion_model.train('emotions', scale=False, samples_limit=3000, kernel='rbf')
 
 while True:
-    _, frame = cap.read()
+    if image_mode:
+        frame = img
+    else:
+        _, frame = cap.read()
+
+    frame = cv2.resize(frame, (0, 0), fx=1, fy=1)
     h, w, _ = frame.shape
 
     FPS = fps.start()
@@ -47,3 +59,7 @@ while True:
         break
 
     cv2.imshow("main", frame)
+
+    if image_mode:
+        cv2.imwrite("main.png", frame)
+        break
